@@ -3,7 +3,8 @@
   "package": "com.cvs0.mcs2.mixin",
   "compatibilityLevel": "JAVA_17",
   "client": [
-    "MinecraftClientMixin"
+    "MinecraftClientMixin",
+    "TelemetryManagerMixin"
   ],
   "injectors": {
     "defaultRequire": 1

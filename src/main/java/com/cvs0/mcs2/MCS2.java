@@ -9,7 +9,7 @@ import org.apache.logging.log4j.Logger;
 
 public class MCS2 implements ClientModInitializer {
     public MinecraftClient mc;
-    public Logger LOGGER = LogManager.getLogger("MCS2");
+    public static Logger LOGGER = LogManager.getLogger("MCS2");
     @Override
     public void onInitializeClient() {
         LOGGER.info("Initialized.");
