@@ -16,16 +16,18 @@ public class MCS2 implements ClientModInitializer {
         mc = MinecraftClient.getInstance();
 
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
-            if(mc.options.getAllowServerListing().getValue()) {
-                mc.options.getAllowServerListing().setValue(false);
-            }
+            if(mc != null && mc.options != null) {
+                if(mc.options.getAllowServerListing().getValue()) {
+                    mc.options.getAllowServerListing().setValue(false);
+                }
 
-            if(!mc.options.getChatLinksPrompt().getValue()) {
-                mc.options.getChatLinksPrompt().setValue(true);
-            }
+                if(!mc.options.getChatLinksPrompt().getValue()) {
+                    mc.options.getChatLinksPrompt().setValue(true);
+                }
 
-            if(!mc.options.skipMultiplayerWarning) {
-                mc.options.skipMultiplayerWarning = true;
+                if(!mc.options.skipMultiplayerWarning) {
+                    mc.options.skipMultiplayerWarning = true;
+                }
             }
         });
     }
