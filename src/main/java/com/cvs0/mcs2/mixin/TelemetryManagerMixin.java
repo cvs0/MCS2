@@ -19,6 +19,10 @@ import java.util.function.Consumer;
 
 @Mixin(TelemetryManager.class)
 public class TelemetryManagerMixin {
+    /**
+     * @author cvs0
+     * @reason Changes the sender to NOOP
+     */
     @Overwrite
     private TelemetrySender computeSender() {
         return TelemetrySender.NOOP;

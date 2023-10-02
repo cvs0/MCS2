@@ -8,27 +8,17 @@ import org.apache.logging.log4j.Logger;
 
 
 public class MCS2 implements ClientModInitializer {
-    public MinecraftClient mc;
+    public static MinecraftClient mc;
+    public static SecurityContainer sc;
     public static Logger LOGGER = LogManager.getLogger("MCS2");
     @Override
     public void onInitializeClient() {
         LOGGER.info("Initialized.");
         mc = MinecraftClient.getInstance();
+        sc = new SecurityContainer();
 
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
-            if(mc != null && mc.options != null) {
-                if(mc.options.getAllowServerListing().getValue()) {
-                    mc.options.getAllowServerListing().setValue(false);
-                }
-
-                if(!mc.options.getChatLinksPrompt().getValue()) {
-                    mc.options.getChatLinksPrompt().setValue(true);
-                }
-
-                if(!mc.options.skipMultiplayerWarning) {
-                    mc.options.skipMultiplayerWarning = true;
-                }
-            }
+            sc.secure(mc);
         });
     }
 }
