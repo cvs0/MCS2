@@ -8,12 +8,15 @@ import org.apache.logging.log4j.Logger;
 
 
 public class MCS2 implements ClientModInitializer {
+    
     public static MinecraftClient mc;
     public static SecurityContainer sc;
     public static Logger LOGGER = LogManager.getLogger("MCS2");
+
     @Override
     public void onInitializeClient() {
         LOGGER.info("Initialized.");
+
         mc = MinecraftClient.getInstance();
         sc = new SecurityContainer();
 

@@ -8,6 +8,7 @@ import org.spongepowered.asm.mixin.Mixin;
 public class SecurityContainer {
     public void secure(MinecraftClient mc) {
         if(mc != null && mc.options != null) {
+
             if(mc.options.getAllowServerListing().getValue()) {
                 mc.options.getAllowServerListing().setValue(false);
             }
