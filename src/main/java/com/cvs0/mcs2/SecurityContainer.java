@@ -17,13 +17,9 @@ public class SecurityContainer {
                 mc.options.getChatLinksPrompt().setValue(true);
             }
 
-            if(!mc.options.skipMultiplayerWarning) {
-                mc.options.skipMultiplayerWarning = true;
-            }
+            if(!mc.options.skipMultiplayerWarning) mc.options.skipMultiplayerWarning = true;
 
-            if(!mc.options.advancedItemTooltips) {
-                mc.options.advancedItemTooltips = true;
-            }
+            if(!mc.options.advancedItemTooltips) mc.options.advancedItemTooltips = true;
         }
     }
 }
