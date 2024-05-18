@@ -11,4 +11,4 @@ MCS2 is a modification for Minecraft that incorporates many useful privacy and s
 
 ### Requirements
 * Minecraft 1.20.2
-* Fabric
+* Fabric 0.89.2+1.20.2
