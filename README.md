@@ -4,5 +4,8 @@ MCS2 is a modification for Minecraft that incorporates many useful privacy and s
 
 ### Features
 * Bypasses singleplayer bans
-* Removes 
+* Disables the server listing (lets other players see what servers you have logged into) 
 * Removes all Telemetry
+* Enables chat links warning
+* Disables the multiplayer consent warning
+
