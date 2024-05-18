@@ -9,3 +9,6 @@ MCS2 is a modification for Minecraft that incorporates many useful privacy and s
 * Enables chat links warning
 * Disables the multiplayer consent warning
 
+### Requirements
+* Minecraft 1.20.2
+* Fabric
