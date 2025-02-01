@@ -6,11 +6,11 @@ import net.minecraft.client.MinecraftClient;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-
 public class MCS2 implements ClientModInitializer {
     
-    public static MinecraftClient mc;
-    public static SecurityContainer sc;
+    private MinecraftClient mc;
+    private SecurityContainer sc;
+
     public static Logger LOGGER = LogManager.getLogger("MCS2");
 
     @Override

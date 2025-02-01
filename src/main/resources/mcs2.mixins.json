@@ -5,7 +5,8 @@
   "client": [
     "MinecraftClientMixin",
     "TelemetryManagerMixin",
-    "TitleScreenMixin"
+    "ClientPlayNetworkHandlerMixin",
+    "accessors.IClientPlayNetworkHandler"
   ],
   "injectors": {
     "defaultRequire": 1

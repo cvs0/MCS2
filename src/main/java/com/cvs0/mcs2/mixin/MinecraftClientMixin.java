@@ -5,45 +5,55 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.GameMenuScreen;
 import net.minecraft.client.gui.screen.TitleScreen;
 import net.minecraft.client.gui.screen.multiplayer.MultiplayerScreen;
+import net.minecraft.util.Util;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+
+import java.util.UUID;
+
 @Mixin(MinecraftClient.class)
 public abstract class MinecraftClientMixin {
-    /**
-     * @author cvs0
-     * @reason Prevents multiplayer bans.
-     */
-    @Overwrite
-    public boolean isMultiplayerEnabled() {
-        return true;
+    @Inject(method = "isOptionalTelemetryEnabled", at = @At("HEAD"), cancellable = true)
+    private void overrideIsOptionalTelemetryEnabled(CallbackInfoReturnable<Boolean> cir) {
+        cir.setReturnValue(false);
     }
 
-    /**
-     * @author cvs0
-     * @reason Prevents realms bans
-     */
-    @Overwrite
-    public boolean isRealmsEnabled() {
-        return true;
+    @Inject(method = "isOptionalTelemetryEnabledByApi", at = @At("HEAD"), cancellable = true)
+    private void overrideIsOptionalTelemetryEnabledByApi(CallbackInfoReturnable<Boolean> cir) {
+        cir.setReturnValue(false);
     }
 
-    /**
-     * @author cvs0
-     * @reason Prevents username bans
-     */
-    @Overwrite
-    public boolean isUsernameBanned() {
-        return false;
+    @Inject(method = "isTelemetryEnabledByApi", at = @At("HEAD"), cancellable = true)
+    private void overrideIsTelemetryEnabledByApi(CallbackInfoReturnable<Boolean> cir) {
+        cir.setReturnValue(false);
     }
 
-    /**
-     * @author cvs0
-     * @reason Nullifies the response for grabbing the ban details.
-     */
-    @Overwrite
-    @Nullable
-    public BanDetails getMultiplayerBanDetails() {
-        return null;
+    @Inject(method = "isMultiplayerEnabled", at = @At("HEAD"), cancellable = true)
+    private void overrideIsMultiplayerEnabled(CallbackInfoReturnable<Boolean> cir) {
+        cir.setReturnValue(true);
+    }
+
+    @Inject(method = "isUsernameBanned", at = @At("HEAD"), cancellable = true)
+    private void overrideIsUsernameBanned(CallbackInfoReturnable<Boolean> cir) {
+        cir.setReturnValue(false);
+    }
+
+    @Inject(method = "getMultiplayerBanDetails", at = @At("HEAD"), cancellable = true)
+    private void overrideMultiplayerBanDetails(CallbackInfoReturnable<BanDetails> cir) {
+        cir.setReturnValue(null);
+    }
+
+    @Inject(method = "shouldBlockMessages", at = @At("HEAD"), cancellable = true)
+    private void overrideShouldBlockMessages(UUID sender, CallbackInfoReturnable<Boolean> cir) {
+        cir.setReturnValue(false);
+    }
+
+    @Inject(method = "getChatRestriction", at = @At("HEAD"), cancellable = true)
+    private void overrideChatRestriction(CallbackInfoReturnable<MinecraftClient.ChatRestriction> cir) {
+        cir.setReturnValue(MinecraftClient.ChatRestriction.ENABLED);
     }
 }
